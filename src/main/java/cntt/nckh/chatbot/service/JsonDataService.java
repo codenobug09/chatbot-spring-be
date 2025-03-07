@@ -41,7 +41,8 @@ public class JsonDataService {
                 return entry.getValue();
             }
         }
-        return chatService.getChatResponse(question);
+        return "Toi ko co cau trl cho cau hoi cua b";
+//        return chatService.getChatResponse(question);
 
     }
 }
