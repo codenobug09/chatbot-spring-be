@@ -64,11 +64,6 @@
 			<artifactId>langchain4j-chroma</artifactId>
 			<version>0.23.0</version>
 		</dependency>
-		<dependency>
-			<groupId>cntt.nckh</groupId>
-			<artifactId>chatbot</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>
