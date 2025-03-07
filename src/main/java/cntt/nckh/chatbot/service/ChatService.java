@@ -19,7 +19,7 @@ import java.util.*;
 @Service
 public class ChatService {
 //    @Value("${openai.api.key}")
-    private String openAiApiKey = "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";
+    private final String openAiApiKey = "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";
     private final Map<String, String> cache = new HashMap<>();
     private static final String OPENAI_URL = "https://api.openai.com/v1/chat/completions";
 
