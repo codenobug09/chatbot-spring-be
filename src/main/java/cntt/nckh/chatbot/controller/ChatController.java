@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/{api_prefix}/chat")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://nckh-ten.vercel.app")
 @RequiredArgsConstructor
 public class ChatController {
 //    private final ChatService chatService;
