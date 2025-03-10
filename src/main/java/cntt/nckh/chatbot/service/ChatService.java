@@ -1,5 +1,6 @@
 package cntt.nckh.chatbot.service;
 
+import cntt.nckh.chatbot.repository.OpenAIRepository;
 import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.completion.CompletionResult;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
@@ -19,9 +20,16 @@ import java.util.*;
 @Service
 public class ChatService {
 //    @Value("${openai.api.key}")
-    private final String openAiApiKey = "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";
+    @Autowired
+    private OpenAIRepository repository;
+
+//    private final String openAiApiKey = "";
     private final Map<String, String> cache = new HashMap<>();
     private static final String OPENAI_URL = "https://api.openai.com/v1/chat/completions";
+
+    public String getKey(){
+        return repository.findById(1L).get().getApiKey();
+    }
 
     public String getChatResponse(String message) {
         // Kiểm tra cache trước khi gọi API
@@ -43,7 +51,7 @@ public class ChatService {
         requestBody.put("messages", List.of(Map.of("role", "user", "content", message)));
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + openAiApiKey);
+        headers.set("Authorization", "Bearer " + getKey());
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
@@ -72,7 +80,7 @@ public class ChatService {
     }
 
     public String getAnswerFromOpenAi(String question, String context) {
-        OpenAiService service = new OpenAiService(openAiApiKey, Duration.ofSeconds(30));
+        OpenAiService service = new OpenAiService(getKey(), Duration.ofSeconds(30));
 
         String prompt = "Dựa trên dữ liệu sau đây, hãy trả lời câu hỏi:\n" + question + "\n\nDữ liệu: " + context;
 

@@ -1,6 +1,8 @@
 package cntt.nckh.chatbot.controller;
 
 import cntt.nckh.chatbot.dto.ChatRequest;
+import cntt.nckh.chatbot.entity.ApiKey;
+import cntt.nckh.chatbot.repository.OpenAIRepository;
 import cntt.nckh.chatbot.service.ChatService;
 import cntt.nckh.chatbot.service.JsonDataService;
 import com.theokanning.openai.service.OpenAiService;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/{api_prefix}/chat")
@@ -23,6 +26,8 @@ public class ChatController {
 //        String response = chatService.getChatResponse(chatRequest.getMessage());
 //        return ResponseEntity.ok(response);
 //    }
+    @Autowired
+    private OpenAIRepository repository;
     @Autowired
     private JsonDataService jsonDataService;
 
@@ -41,4 +46,9 @@ public class ChatController {
         String answer = chatService.getAnswerFromOpenAi(question, context);
         return Map.of("response", answer);
     }
+
+//    @GetMapping("/get/{id}")
+//    public String getById(@PathVariable Long id){
+//        return repository.findById(id).get().getApiKey();
+//    }
 }
