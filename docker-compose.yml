@@ -1,33 +1,31 @@
 version: '3.8'
+
 services:
+  # Dịch vụ ứng dụng Spring Boot
+  springboot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Dockerfile của ứng dụng Spring Boot
+    ports:
+      - "8080:8080"  # Map port 8080 từ container sang máy chủ
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://127.0.0.1:3307/chatbot
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=09012003
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - db  # Chỉ khởi động ứng dụng khi dịch vụ db sẵn sàng
+
+  # Dịch vụ cơ sở dữ liệu MySQL
   db:
-    image: mysql:8.0
-    container_name: chatbot-db
+    image: mysql:8.0  # Sử dụng image MySQL 8.0
     environment:
       MYSQL_ROOT_PASSWORD: 09012003
       MYSQL_DATABASE: chatbot
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 09012003
     ports:
-      - "3308:3307"
-    networks:
-      - app-network
+      - "3308:3307"  # Map cổng MySQL từ container sang máy chủ
+    volumes:
+      - db-data:/var/lib/mysql  # Dữ liệu MySQL sẽ được lưu trữ ngoài container để tránh mất dữ liệu khi container bị xóa
 
-  app:
-    build:
-      context: .
-    container_name: be
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3307/chatbot
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 09012003
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+volumes:
+  db-data:  # Tạo volume để lưu trữ dữ liệu của MySQL
