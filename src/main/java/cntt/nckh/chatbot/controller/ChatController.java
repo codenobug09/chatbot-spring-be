@@ -1,22 +1,16 @@
 package cntt.nckh.chatbot.controller;
 
-import cntt.nckh.chatbot.dto.ChatRequest;
-import cntt.nckh.chatbot.entity.ApiKey;
 import cntt.nckh.chatbot.repository.OpenAIRepository;
 import cntt.nckh.chatbot.service.ChatService;
 import cntt.nckh.chatbot.service.JsonDataService;
-import com.theokanning.openai.service.OpenAiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/{api_prefix}/chat")
-@CrossOrigin(origins = "https://nckh-ten.vercel.app")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
 public class ChatController {
 //    private final ChatService chatService;
