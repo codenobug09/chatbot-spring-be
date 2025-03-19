@@ -82,7 +82,7 @@ public class ChatService {
     public String getAnswerFromOpenAi(String question, String context) {
         OpenAiService service = new OpenAiService(getKey(), Duration.ofSeconds(30));
 
-        String prompt = "Dựa trên dữ liệu sau đây, hãy trả lời câu hỏi:\n" + question + "\n\nDữ liệu: " + context;
+        String prompt = question + context;
 
         System.out.println("Gửi lên OpenAI: " + prompt); // Debug
 
