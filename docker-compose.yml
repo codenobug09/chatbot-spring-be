@@ -9,7 +9,7 @@ services:
     ports:
       - "8080:8080"  # Map port 8080 từ container sang máy chủ
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3307/chatbot
+      - SPRING_DATASOURCE_URL=jdbc:mysql://chatbot-db-1:3307/chatbot
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=rootpassword
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -18,12 +18,13 @@ services:
 
   # Dịch vụ cơ sở dữ liệu MySQL
   db:
+    container_name: chatbot-db-1
     image: mysql:8.0  # Sử dụng image MySQL 8.0
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: chatbot
     ports:
-      - "3308:3307"  # Map cổng MySQL từ container sang máy chủ
+      - "3308:3306"  # Map cổng MySQL từ container sang máy chủ
     volumes:
       - db-data:/var/lib/mysql  # Dữ liệu MySQL sẽ được lưu trữ ngoài container để tránh mất dữ liệu khi container bị xóa
 
