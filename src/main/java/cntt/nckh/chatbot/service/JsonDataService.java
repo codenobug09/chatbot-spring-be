@@ -29,7 +29,7 @@ public class JsonDataService {
     }
 
     public String searchAnswer(String question) {
-        String normalizedQuestion = question.toLowerCase().trim();
+        String normalizedQuestion = question;
 
         // Kiểm tra nếu câu hỏi có trong dữ liệu
         if (chatbotData.containsKey(normalizedQuestion)) {
