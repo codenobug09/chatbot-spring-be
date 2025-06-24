@@ -79,10 +79,10 @@ public class ChatService {
         return "Lỗi 429: Quá nhiều request, hãy thử lại sau!";
     }
 
-    public String getAnswerFromOpenAi(String question, String context) {
+    public String getAnswerFromOpenAi(String question) {
         OpenAiService service = new OpenAiService(getKey(), Duration.ofSeconds(30));
 
-        String prompt = "Dựa trên dữ liệu sau đây, hãy trả lời câu hỏi:\n" + question + "\n\nDữ liệu: " + context;
+        String prompt = "Dựa trên dữ liệu sau đây, hãy trả lời câu hỏi:\n" + question;
 
         System.out.println("Gửi lên OpenAI: " + prompt); // Debug
 

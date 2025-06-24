@@ -10,7 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/{api_prefix}/chat")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://nckh-fe-beta.vercel.app")
 @RequiredArgsConstructor
 public class ChatController {
 //    private final ChatService chatService;
@@ -37,7 +37,7 @@ public class ChatController {
         if (context.equals("Xin lỗi, tôi không có thông tin về câu hỏi này.")) {
             return Map.of("response", context);
         }
-        String answer = chatService.getAnswerFromOpenAi(question, context);
+        String answer = chatService.getAnswerFromOpenAi(question);
         return Map.of("response", answer);
     }
 
@@ -46,3 +46,5 @@ public class ChatController {
 //        return repository.findById(id).get().getApiKey();
 //    }
 }
+
+
