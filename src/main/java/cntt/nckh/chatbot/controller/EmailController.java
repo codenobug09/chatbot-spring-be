@@ -6,7 +6,8 @@ import cntt.nckh.chatbot.dto.OtpAuthenRequest;
 import cntt.nckh.chatbot.dto.OtpResponse;
 import cntt.nckh.chatbot.repository.OtpRepository;
 import cntt.nckh.chatbot.repository.UserEmailRepository;
-import cntt.nckh.chatbot.service.OtpService;
+import cntt.nckh.chatbot.service.otp.IOtpService;
+import cntt.nckh.chatbot.service.otp.OtpService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class EmailController {
 
     @Autowired
-    private OtpService otpService;
+    private IOtpService otpService;
     @Autowired
     private OtpRepository otpRepository;
     @Autowired
